@@ -13,10 +13,40 @@ const FooterNav = () => {
               />
               <span className="text-2xl font-bold">ExpertHub LLC</span>
             </div>
-            <p className="text-sm">
+            <p className="text-sm mb-6">
               Connecting professionals through Expert services, workspace,
               trainings and events
             </p>
+            <div className="space-y-6 text-gray-400">
+              <div>
+                <h4 className="text-white font-semibold mb-1">Dallas Office</h4>
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=910+S.+Pearl+Expy,+Dallas,+TX+75201,+USA" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors block"
+                >
+                  910 S. Pearl Expy, Dallas, <br /> TX 75201, USA
+                </a>
+                <p className="mt-1">
+                  Phone: <a href="tel:2144323113" className="hover:text-white transition-colors">214-432-3113</a>
+                </p>
+              </div>
+              <div>
+                <h4 className="text-white font-semibold mb-1">Houston Office</h4>
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=4008+Chartres+St,+Houston,+TX+77004,+USA" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors block"
+                >
+                  4008 Chartres St, Houston, TX 77004, USA
+                </a>
+                <p className="mt-1">
+                  Phone: <a href="tel:7132446695" className="hover:text-white transition-colors">713-244-6695</a>
+                </p>
+              </div>
+            </div>
           </div>
           <div>
             <h3 className="font-semibold mb-2">Services</h3>

@@ -120,55 +120,67 @@ const assistantServices = [
   {
     title: "Real Estate Assistant",
     value: "All-round help for your property listings",
+    image: "/images/services/real-estate.png",
   },
   {
     title: "Healthcare Assistant",
     value:
       "Helps co-ordinate appointments with patients, data-entry and insurance filing",
+    image: "/images/services/healthcare.png",
   },
   {
     title: "Personal Assistant",
     value: "Manages your calendar both at work and outside of it",
+    image: "/images/services/personal.png",
   },
   {
     title: "Executive Assistant",
     value:
       "Discover expert-tier talent to help with presentations, proposals and more",
+    image: "/images/services/executive.png",
   },
   {
     title: "Digi. Marketing Assistant",
     value: "Discover experts in ppc ads, email marketing and growth",
+    image: "/images/services/marketing.png",
   },
   {
     title: "Sales Development Rep",
     value: "Engages with prospects, grows your sales pipeline and drives sales",
+    image: "https://wingassistant.com/wp-content/uploads/2025/01/03.png",
   },
   {
     title: "Bookkeeping Assistant",
     value: "Tracks expenses, maintain your books and reconcile statements",
+    image: "https://wingassistant.com/wp-content/uploads/2025/01/03.png",
   },
   {
     title: "Customer Service Rep",
     value:
       "Delivers responsive and professional customer support for general queries, complaints and feedbacks",
+    image: "https://wingassistant.com/wp-content/uploads/2025/01/03.png",
   },
   {
     title: "Virtual Assistant for lawyers",
     value:
       "Provides expert assistance for legal research, document preparation, and case management",
+    image: "https://wingassistant.com/wp-content/uploads/2025/01/03.png",
   },
   {
     title: "Website Management",
     value: "Handles website updates, content management, and SEO optimization",
+    image: "https://wingassistant.com/wp-content/uploads/2025/01/03.png",
   },
   {
     title: "Social Media Management",
     value:
       "Creates and schedules posts, engages with followers, and analyzes performance metrics.",
+    image: "https://wingassistant.com/wp-content/uploads/2025/01/03.png",
   },
   {
     title: "General Virtual Assistant",
     value: "Provides administrative support across various tasks and projects.",
+    image: "https://wingassistant.com/wp-content/uploads/2025/01/03.png",
   },
 ];
 
@@ -195,7 +207,7 @@ export default function Home() {
               <div className="flex gap-3 mt-4">
                 <Link
                   to={
-                    "https://www.experthubllc.com/?mode=signup&createorg=true"
+                    "https://www.experthubllc.com/auth?mode=signup&createorg=true&VA=true"
                   }
                 >
                   <button className="md:px-8 px-4 py-2 bg-primary text-white rounded-full">
@@ -539,7 +551,7 @@ export default function Home() {
               <li>Upskilling and training</li>
             </ul> */}
             <Link
-              to={"https://www.experthubllc.com/?mode=signup&createorg=true"}
+              to={"https://www.experthubllc.com/auth?mode=signup&createorg=true&VA=true"}
             >
               <button className="bg-transparent border border-black rounded-full px-8 text-black py-3 mt-4">
                 Book Your Virtual Assistant Today
@@ -647,7 +659,7 @@ export default function Home() {
               <h2 className="text-xl font-bold">GVA Full-Time</h2>
               <p className="text-primary font-bold text-3xl my-4">$850/Month</p>
               <Link
-                to={"https://www.experthubllc.com/?mode=signup&createorg=true"}
+                to={"https://www.experthubllc.com/auth?mode=signup&createorg=true&VA=true"}
               >
                 <button className="bg-primary text-white w-full rounded-full px-4 py-2">
                   Sign Up
@@ -687,7 +699,7 @@ export default function Home() {
               <h2 className="text-xl font-bold">GVA Part-Time</h2>
               <p className="text-primary font-bold text-3xl my-4">$450/Month</p>
               <Link
-                to={"https://www.experthubllc.com/?mode=signup&createorg=true"}
+                to={"https://www.experthubllc.com/auth?mode=signup&createorg=true&VA=true"}
               >
                 <button className="bg-primary text-white w-full rounded-full px-4 py-2">
                   Sign Up
@@ -748,14 +760,14 @@ export default function Home() {
               >
                 <div className="relative w-full h-full min-h-[320px] transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                   {/* Front Side */}
-                  <div className="absolute cursor-pointer inset-0 bg-primary/20 rounded-lg text-center flex flex-col justify-between [backface-visibility:hidden] h-full">
+                  <div className="absolute cursor-pointer inset-0 bg-primary/20 rounded-lg text-center flex flex-col justify-between [backface-visibility:hidden] h-full overflow-hidden">
                     <img
-                      src="https://wingassistant.com/wp-content/uploads/2025/01/03.png"
-                      alt=""
-                      className="mx-auto"
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover"
                     />
-                    <div className="bg-primary rounded-b-lg p-4">
-                      <h3 className="text-lg text-white font-semibold mb-2">
+                    <div className="bg-primary p-4 z-10 shrink-0">
+                      <h3 className="text-lg text-white font-semibold">
                         {service.title}
                       </h3>
                     </div>
