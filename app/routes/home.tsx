@@ -9,6 +9,11 @@ import {
 } from "~/components/ui/Accordion";
 import ReviewSlider from "~/components/ReviewSlider";
 import { Link } from "react-router";
+import { useState } from "react";
+import { 
+  Home as HomeIcon, Stethoscope, Calendar, Briefcase, TrendingUp, PhoneCall, 
+  BookOpen, Headset, Scale, Globe, Share2, UserCheck 
+} from "lucide-react";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -120,71 +125,85 @@ const assistantServices = [
   {
     title: "Real Estate Assistant",
     value: "All-round help for your property listings",
-    image: "/images/services/real-estate.png",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800",
+    Icon: HomeIcon,
   },
   {
     title: "Healthcare Assistant",
     value:
       "Helps co-ordinate appointments with patients, data-entry and insurance filing",
-    image: "/images/services/healthcare.png",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800",
+    Icon: Stethoscope,
   },
   {
     title: "Personal Assistant",
     value: "Manages your calendar both at work and outside of it",
-    image: "/images/services/personal.png",
+    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
+    Icon: Calendar,
   },
   {
     title: "Executive Assistant",
     value:
       "Discover expert-tier talent to help with presentations, proposals and more",
-    image: "/images/services/executive.png",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
+    Icon: Briefcase,
   },
   {
     title: "Digi. Marketing Assistant",
     value: "Discover experts in ppc ads, email marketing and growth",
-    image: "/images/services/marketing.png",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
+    Icon: TrendingUp,
   },
   {
     title: "Sales Development Rep",
     value: "Engages with prospects, grows your sales pipeline and drives sales",
-    image: "https://wingassistant.com/wp-content/uploads/2025/01/03.png",
+    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=800",
+    Icon: PhoneCall,
   },
   {
     title: "Bookkeeping Assistant",
     value: "Tracks expenses, maintain your books and reconcile statements",
-    image: "https://wingassistant.com/wp-content/uploads/2025/01/03.png",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800",
+    Icon: BookOpen,
   },
   {
     title: "Customer Service Rep",
     value:
       "Delivers responsive and professional customer support for general queries, complaints and feedbacks",
-    image: "https://wingassistant.com/wp-content/uploads/2025/01/03.png",
+    image: "https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&q=80&w=800",
+    Icon: Headset,
   },
   {
     title: "Virtual Assistant for lawyers",
     value:
       "Provides expert assistance for legal research, document preparation, and case management",
-    image: "https://wingassistant.com/wp-content/uploads/2025/01/03.png",
+    image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=800",
+    Icon: Scale,
   },
   {
     title: "Website Management",
     value: "Handles website updates, content management, and SEO optimization",
-    image: "https://wingassistant.com/wp-content/uploads/2025/01/03.png",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800",
+    Icon: Globe,
   },
   {
     title: "Social Media Management",
     value:
       "Creates and schedules posts, engages with followers, and analyzes performance metrics.",
-    image: "https://wingassistant.com/wp-content/uploads/2025/01/03.png",
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800",
+    Icon: Share2,
   },
   {
     title: "General Virtual Assistant",
     value: "Provides administrative support across various tasks and projects.",
-    image: "https://wingassistant.com/wp-content/uploads/2025/01/03.png",
+    image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&q=80&w=800",
+    Icon: UserCheck,
   },
 ];
 
 export default function Home() {
+  const [showAllServices, setShowAllServices] = useState(false);
+
   return (
     <>
       <HeaderNav />
@@ -753,54 +772,46 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               More Virtual Assistant Services
             </h2>
-            <p className="mb-4">
-              We offer 25+ distinct plans in sales, marketing, customer service,
-              and other operational areas. We also have dedicated
-              industry-focused services such as Real Estate Assistants,
-              Healthcare Virtual Assistants and E-Commerce Virtual Assistants.
+            <p className="mb-4 max-w-2xl mx-auto text-gray-600">
+              We offer 25+ distinct plans across sales, marketing, and operations. Speak to an expert to find the perfect fit.
             </p>
-            <p>Speak to an Expert and find the right fit for your business.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
-            {assistantServices.map((service, i) => (
-              <div
-                key={i}
-                className="group [perspective:1000px] h-full mb-8"
-                style={{ minHeight: "320px" }}
-              >
-                <div className="relative w-full h-full min-h-[320px] transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                  {/* Front Side */}
-                  <div className="absolute cursor-pointer inset-0 bg-primary/20 rounded-lg text-center flex flex-col justify-between [backface-visibility:hidden] h-full overflow-hidden">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="bg-primary p-4 z-10 shrink-0">
-                      <h3 className="text-lg text-white font-semibold">
-                        {service.title}
-                      </h3>
-                    </div>
-                  </div>
-                  {/* Back Side */}
-                  <div className="absolute inset-0 rounded-lg bg-primary flex flex-col items-center justify-center [transform:rotateY(180deg)] [backface-visibility:hidden] h-full z-10">
-                    <h3 className="text-lg text-white font-semibold">
-                      {service.title}
-                    </h3>
-
-                    <p className="text-center text-white p-3">
-                      {service.value}
-                    </p>
-                    <Link to={"https://www.experthubllc.com/home#contact"}>
-                      <button className="bg-white text-primary font-bold px-6 py-2 rounded-full shadow hover:bg-primary hover:text-white transition">
-                        Book a Call
-                      </button>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16 p-4 max-w-6xl mx-auto mt-10">
+            {assistantServices.slice(0, showAllServices ? assistantServices.length : 6).map((service, i) => (
+              <div key={i} className="flex gap-5 items-start group animate-fade-in">
+                <div className="bg-primary/5 border border-primary/10 p-4 rounded-2xl text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-md shrink-0">
+                  {service.Icon ? <service.Icon className="w-7 h-7" strokeWidth={1.5} /> : null}
+                </div>
+                <div className="flex flex-col h-full bg-white transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed text-sm mb-4">
+                    {service.value}
+                  </p>
+                  <div className="mt-auto">
+                    <Link to={"https://www.experthubllc.com/home#contact"} className="inline-flex items-center gap-1 font-semibold text-sm text-primary group-hover:text-primary/80 transition-colors group/btn">
+                      Book a Call
+                      <span className="transform group-hover/btn:translate-x-1 transition-transform duration-300">→</span>
                     </Link>
                   </div>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Show More / Show Less Button */}
+          {assistantServices.length > 6 && (
+            <div className="flex justify-center mt-12">
+              <button 
+                onClick={() => setShowAllServices(!showAllServices)}
+                className="bg-white text-gray-700 font-semibold px-8 py-3 rounded-full shadow border border-gray-200 hover:border-primary/50 hover:text-primary transition-all duration-300"
+              >
+                {showAllServices ? "View Less" : `View All ${assistantServices.length} Services`}
+              </button>
+            </div>
+          )}
         </section>
 
         <section className="max-w-7xl mx-auto py-16 px-4 animate-fade-in delay-700">
