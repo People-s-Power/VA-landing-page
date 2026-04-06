@@ -207,11 +207,12 @@ export default function Home() {
               <div className="flex gap-3 mt-4">
                 <Link
                   to={
-                    "https://www.experthubllc.com/auth?mode=signup&createorg=true&VA=true"
+                    "https://www.experthubllc.com/book/Hire-ExpertHub"
                   }
+                  target="_blank"
                 >
                   <button className="md:px-8 px-4 py-2 bg-primary text-white rounded-full">
-                    Hire Now
+                    Book Consultation
                   </button>
                 </Link>
                 <Link to={"#learn-more"}>
