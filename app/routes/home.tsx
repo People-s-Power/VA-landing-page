@@ -207,12 +207,11 @@ export default function Home() {
               <div className="flex gap-3 mt-4">
                 <Link
                   to={
-                    "https://www.experthubllc.com/book/Hire-ExpertHub"
+                    "https://www.experthubllc.com/auth?mode=signup&createorg=true&VA=true"
                   }
-                  target="_blank"
                 >
                   <button className="md:px-8 px-4 py-2 bg-primary text-white rounded-full">
-                    Book Consultation
+                    Hire Now
                   </button>
                 </Link>
                 <Link to={"#learn-more"}>
@@ -243,6 +242,16 @@ export default function Home() {
                 We handle the daily tasks that drain your time so that you can
                 focus on strategy, clients, and growth. Our services include:
               </p>
+              <Link
+                to={
+                  "https://www.experthubllc.com/book/Hire-ExpertHub"
+                }
+                target="_blank"
+              >
+                <button className="md:px-8 px-4 py-2 mb-8 bg-primary text-white rounded-full">
+                  Book Consultation
+                </button>
+              </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {tasks.map((task, index) => (
