@@ -9,7 +9,7 @@ import {
 } from "~/components/ui/Accordion";
 import ReviewSlider from "~/components/ReviewSlider";
 import { Link } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   Home as HomeIcon, Stethoscope, Calendar, Briefcase, TrendingUp, PhoneCall, 
   BookOpen, Headset, Scale, Globe, Share2, UserCheck 
@@ -201,8 +201,23 @@ const assistantServices = [
   },
 ];
 
+const heroImages = [
+  "/images/hero_1.png",
+  "/images/healthcare-va.png",
+  "/images/tech_support_va.png",
+  "/images/marketing_va.png",
+];
+
 export default function Home() {
   const [showAllServices, setShowAllServices] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000); // Transition every 4 seconds
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -240,15 +255,63 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div>
-              <img src="/images/hero.png" alt="" />
+            <div className="relative w-full min-h-[400px] flex items-center justify-center py-10 mt-10 md:mt-0">
+              {/* Outer Anti-Clockwise Ring */}
+              <div 
+                className="absolute border-[3px] border-dashed border-primary/30 rounded-full w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] lg:w-[460px] lg:h-[460px] animate-[spin_25s_linear_infinite_reverse]" 
+              />
+              
+              {/* Inner Clockwise Ring (Narrow Gap) */}
+              <div 
+                className="absolute border-[2px] border-dashed border-orange-400/60 rounded-full w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] lg:w-[430px] lg:h-[430px] animate-[spin_15s_linear_infinite]" 
+              />
+              
+              {/* Floating 2D Elements (Live Vector Icons) */}
+              <div className="absolute inset-0 w-full h-full flex items-center justify-center z-20 pointer-events-none">
+                {/* Element 1: Top Left - Phone */}
+                <div className="absolute top-10 left-16 sm:left-28 lg:left-44 bg-white p-4 rounded-full shadow-xl border border-primary/10 animate-[bounce_4s_infinite]" style={{ animationDelay: '0ms' }}>
+                  <PhoneCall className="w-6 h-6 text-primary" strokeWidth={2} />
+                </div>
+                
+                {/* Element 2: Top Right - Calendar */}
+                <div className="absolute top-16 right-12 sm:right-24 lg:right-40 bg-white p-3 rounded-full shadow-lg border border-primary/10 animate-[bounce_4s_infinite]" style={{ animationDelay: '1000ms' }}>
+                  <Calendar className="w-5 h-5 text-orange-400" strokeWidth={2} />
+                </div>
+
+                {/* Element 3: Bottom Left - Headset */}
+                <div className="absolute bottom-10 left-6 sm:left-12 lg:left-24 bg-white p-3 rounded-full shadow-lg border border-primary/10 animate-[bounce_4s_infinite]" style={{ animationDelay: '2000ms' }}>
+                  <Headset className="w-6 h-6 text-primary" strokeWidth={2} />
+                </div>
+                
+                {/* Element 4: Bottom Right - Trending */}
+                <div className="absolute bottom-4 right-8 sm:right-16 lg:right-32 bg-white p-4 rounded-full shadow-xl border border-primary/10 animate-[bounce_4s_infinite]" style={{ animationDelay: '1500ms' }}>
+                  <TrendingUp className="w-7 h-7 text-primary" strokeWidth={2} />
+                </div>
+              </div>
+              
+              {/* Soft glow behind character */}
+              <div className="absolute bg-primary/10 blur-3xl rounded-full w-[250px] h-[250px]" />
+
+              {/* Image Transition Sequence */}
+              <div className="relative z-10 w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] lg:w-[450px] lg:h-[450px]">
+                {heroImages.map((src, idx) => (
+                  <img
+                    key={src}
+                    src={src}
+                    alt={`Virtual Assistant ${idx + 1}`}
+                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 ease-in-out ${
+                      idx === currentImageIndex ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         <section id="learn-more" className="py-16 animate-fade-in delay-100">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
+            <div className="max-w-3xl mx-auto text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 What we do
               </h2>
@@ -257,20 +320,10 @@ export default function Home() {
                 everything that matters.
               </p>
 
-              <p className="text-gray-600 mb-8">
+              <p className="text-gray-600">
                 We handle the daily tasks that drain your time so that you can
                 focus on strategy, clients, and growth. Our services include:
               </p>
-              <Link
-                to={
-                  "https://www.experthubllc.com/book/Hire-ExpertHub"
-                }
-                target="_blank"
-              >
-                <button className="md:px-8 px-4 py-2 mb-8 bg-primary text-white rounded-full">
-                  Book Consultation
-                </button>
-              </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {tasks.map((task, index) => (
@@ -435,6 +488,18 @@ export default function Home() {
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="flex justify-center mt-12">
+              <Link
+                to={
+                  "https://www.experthubllc.com/book/Hire-ExpertHub"
+                }
+                target="_blank"
+              >
+                <button className="md:px-10 px-6 py-3 bg-primary text-white rounded-full text-lg font-semibold hover:bg-primary/90 hover:shadow-lg transition-all duration-300">
+                  Book Consultation
+                </button>
+              </Link>
             </div>
           </div>
         </section>
