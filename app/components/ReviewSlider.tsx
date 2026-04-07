@@ -78,9 +78,9 @@ const ReviewSlider: React.FC = () => (
   >
     {reviews.map((r, idx) => (
       <SwiperSlide key={idx}>
-        <div className="bg-white rounded-xl border border-gray-200 p-8 flex flex-col items-center max-w-xl mx-auto h-full min-h-[340px]">
+        <div className="bg-white rounded-xl border border-gray-200 p-8 flex flex-col items-center max-w-xl mx-auto h-full">
           <StarRating stars={r.stars} />
-          <p className="text-lg text-gray-700 mb-6 text-center flex-1">“{r.review}”</p>
+          <p className="text-lg text-gray-700 mb-8 text-center">“{r.review}”</p>
           <div className="flex items-center gap-4">
             <img src={r.image} alt={r.name} className="w-16 h-16 rounded-full object-cover border-2 border-primary" />
             <div>
