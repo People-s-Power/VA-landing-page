@@ -14,6 +14,24 @@ import {
   Home as HomeIcon, Stethoscope, Calendar, Briefcase, TrendingUp, PhoneCall, 
   BookOpen, Headset, Scale, Globe, Share2, UserCheck 
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.6, ease: "easeOut" }
+};
+
+const staggerContainer = {
+  initial: {},
+  whileInView: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  },
+  viewport: { once: true }
+};
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -223,9 +241,14 @@ export default function Home() {
     <>
       <HeaderNav />
       <main>
-        <section className="bg-primary/10 animate-fade-in">
+        <section className="bg-primary/10 overflow-hidden">
           <div className="max-w-7xl mx-auto grid gap-10 grid-cols-1 md:grid-cols-2 py-10 md:py-16 px-4">
-            <div className="md:my-auto mt-20">
+            <motion.div 
+              className="md:my-auto mt-20"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
               {/* <p className="mb-4">FULLY MANAGED</p> */}
               <h2 className="md:text-5xl text-4xl leading-tight font-bold text-gray-800 mb-4">
                 Work Smarter, Grow
@@ -254,8 +277,13 @@ export default function Home() {
                   </button>
                 </Link>
               </div>
-            </div>
-            <div className="relative w-full min-h-[400px] flex items-center justify-center py-10 mt-10 md:mt-0">
+            </motion.div>
+            <motion.div 
+              className="relative w-full min-h-[400px] flex items-center justify-center py-10 mt-10 md:mt-0"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               {/* Outer Anti-Clockwise Ring */}
               <div 
                 className="absolute border-[3px] border-dashed border-primary/30 rounded-full w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] lg:w-[460px] lg:h-[460px] animate-[spin_25s_linear_infinite_reverse]" 
@@ -305,13 +333,22 @@ export default function Home() {
                   />
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
-        <section id="learn-more" className="py-16 animate-fade-in delay-100">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-12">
+        <section id="learn-more" className="py-16 overflow-hidden">
+          <motion.div 
+            className="max-w-7xl mx-auto px-4"
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <motion.div 
+              className="max-w-3xl mx-auto text-center mb-12"
+              variants={fadeInUp}
+            >
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 What we do
               </h2>
@@ -324,10 +361,14 @@ export default function Home() {
                 We handle the daily tasks that drain your time so that you can
                 focus on strategy, clients, and growth. Our services include:
               </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            </motion.div>
+            <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {tasks.map((task, index) => (
-                <div key={index} className="p-4 flex gap-3">
+                <motion.div 
+                  key={index} 
+                  className="p-4 flex gap-3"
+                  variants={fadeInUp}
+                >
                   {/* Use appropriate icons for each task */}
                   {index === 0 && (
                     <svg
@@ -486,10 +527,13 @@ export default function Home() {
                     <h3 className="font-bold text-lg">{task.title}</h3>
                     <p className="text-gray-600">{task.body}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
-            <div className="flex justify-center mt-12">
+            </motion.div>
+            <motion.div 
+              className="flex justify-center mt-12"
+              variants={fadeInUp}
+            >
               <Link
                 to={
                   "https://www.experthubllc.com/book/Hire-ExpertHub"
@@ -500,12 +544,21 @@ export default function Home() {
                   Book Consultation
                 </button>
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </section>
 
-        <section className="py-20 max-w-7xl mx-auto animate-fade-in delay-200">
-          <div className="max-w-4xl px-4 mx-auto text-center mb-8">
+        <motion.section 
+          className="py-20 max-w-7xl mx-auto overflow-hidden"
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          <motion.div 
+            className="max-w-4xl px-4 mx-auto text-center mb-8"
+            variants={fadeInUp}
+          >
             <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">
               Why Work With ExpertHub?
             </h2>
@@ -516,12 +569,17 @@ export default function Home() {
               overwhelming social media. We take care of the details so you can
               do what truly matters—grow and scale your business.
             </p>
-          </div>
+          </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 p-4 md:p-8">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
               <img src="/images/img-1.png" alt="" />
-            </div>
-            <div className="my-auto">
+            </motion.div>
+            <motion.div className="my-auto" variants={fadeInUp}>
               {/* <h2 className="text-3xl font-bold">
                 Enterprise-Grade Talent Services Tailored for Founders at Every
                 Stage
@@ -571,11 +629,11 @@ export default function Home() {
                   </AccordionItem>
                 ))}
               </Accordion>
-            </div>
+            </motion.div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 p-4 md:p-8 my-10">
-            <div className="my-auto">
+            <motion.div className="my-auto" variants={fadeInUp}>
               <h2 className="text-3xl font-bold">
                 We Meet Challenging Talent Needs and Ensure Ongoing Success
               </h2>
@@ -620,15 +678,26 @@ export default function Home() {
                   </AccordionItem>
                 ))}
               </Accordion>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
               <img src="/images/img-2.png" alt="" />
-            </div>
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
 
-        <section className="my-10 mx-4 max-w-7xl md:mx-auto bg-primary/20 rounded-xl p-4 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-10 animate-fade-in delay-300">
-          <div className="md:my-auto my-10">
+        <motion.section 
+          className="my-10 mx-4 max-w-7xl md:mx-auto bg-primary/20 rounded-xl p-4 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-10 overflow-hidden"
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          <motion.div className="md:my-auto my-10" variants={fadeInUp}>
             <h2 className="md:text-4xl text-3xl font-bold">
               Effortless Remote Work Management With ExpertHub
             </h2>
@@ -651,26 +720,44 @@ export default function Home() {
                 Book Your Virtual Assistant Today
               </button>
             </Link>
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
             <img src="/images/img-2.png" alt="" />
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
-        <section className="max-w-7xl mx-auto my-20 animate-fade-in delay-400">
+        <motion.section 
+          className="max-w-7xl mx-auto my-20 overflow-hidden"
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
             Hundreds of Stellar Client Reviews
           </h2>
           <div className="md:m-auto m-4">
             <ReviewSlider />
           </div>
-        </section>
+        </motion.section>
 
-        <section
+        <motion.section
           id="pricing"
-          className="bg-primary/20 py-20 animate-fade-in delay-500"
+          className="bg-primary/20 py-20 overflow-hidden"
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true }}
+          variants={staggerContainer}
         >
-          <div className="max-w-4xl px-4 mx-auto text-center mb-10">
+          <motion.div 
+            className="max-w-4xl px-4 mx-auto text-center mb-10"
+            variants={fadeInUp}
+          >
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               General Virtual Assistant Pricing
             </h2>
@@ -680,9 +767,9 @@ export default function Home() {
               day-to-day operations so you can focus on growing your business
               and achieving your goals.
             </p>
-          </div>
+          </motion.div>
           <div className="shadow-xl my-6 grid grid-cols-1 md:grid-cols-3 gap-5 bg-white rounded-2xl p-4 md:p-10 max-w-6xl md:mx-auto mx-4">
-            <div className="p-4 lg:border-r border-r-gray-200">
+            <motion.div className="p-4 lg:border-r border-r-gray-200" variants={fadeInUp}>
               <h2 className="text-xl font-bold mb-4">Need help?</h2>
               <Link to={"https://www.experthubllc.com/book/Hire-ExpertHub"} target="_blank">
                 <div className="border flex gap-3 border-primary p-5 rounded-xl mb-4">
@@ -748,8 +835,8 @@ export default function Home() {
                   </div>
                 </div>
               </Link> */}
-            </div>
-            <div className="p-4 lg:border-r border-r-gray-200">
+            </motion.div>
+            <motion.div className="p-4 lg:border-r border-r-gray-200" variants={fadeInUp}>
               <h2 className="text-xl font-bold">GVA Full-Time</h2>
               <p className="text-primary font-bold text-3xl my-4">$850/Month</p>
               <Link
@@ -788,8 +875,8 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-            </div>
-            <div className="p-4">
+            </motion.div>
+            <motion.div className="p-4" variants={fadeInUp}>
               <h2 className="text-xl font-bold">GVA Part-Time</h2>
               <p className="text-primary font-bold text-3xl my-4">$450/Month</p>
               <Link
@@ -828,23 +915,43 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
 
-        <section className="py-20 max-w-7xl mx-auto animate-fade-in delay-600">
-          <div className="max-w-4xl mx-auto text-center mb-10 px-4">
+        <motion.section 
+          className="py-20 max-w-7xl mx-auto overflow-hidden"
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          <motion.div 
+            className="max-w-4xl mx-auto text-center mb-10 px-4"
+            variants={fadeInUp}
+          >
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               More Virtual Assistant Services
             </h2>
             <p className="mb-4 max-w-2xl mx-auto text-gray-600">
               We offer 25+ distinct plans across sales, marketing, and operations. Speak to an expert to find the perfect fit.
             </p>
-          </div>
+          </motion.div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16 p-4 max-w-6xl mx-auto mt-10">
-            {assistantServices.slice(0, showAllServices ? assistantServices.length : 6).map((service, i) => (
-              <div key={i} className="flex gap-5 items-start group animate-fade-in">
+          <motion.div 
+            layout
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16 p-4 max-w-6xl mx-auto mt-10"
+          >
+            <AnimatePresence mode="popLayout">
+              {assistantServices.slice(0, showAllServices ? assistantServices.length : 6).map((service) => (
+                <motion.div 
+                  key={service.title} 
+                  layout
+                  className="flex gap-5 items-start group"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                >
                 <div className="bg-primary/5 border border-primary/10 p-4 rounded-2xl text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-md shrink-0">
                   {service.Icon ? <service.Icon className="w-7 h-7" strokeWidth={1.5} /> : null}
                 </div>
@@ -862,24 +969,34 @@ export default function Home() {
                     </Link>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+            </AnimatePresence>
+          </motion.div>
 
           {/* Show More / Show Less Button */}
           {assistantServices.length > 6 && (
-            <div className="flex justify-center mt-12">
+            <motion.div 
+              className="flex justify-center mt-12"
+              variants={fadeInUp}
+            >
               <button 
                 onClick={() => setShowAllServices(!showAllServices)}
                 className="bg-white text-gray-700 font-semibold px-8 py-3 rounded-full shadow border border-gray-200 hover:border-primary/50 hover:text-primary transition-all duration-300"
               >
                 {showAllServices ? "View Less" : `View All ${assistantServices.length} Services`}
               </button>
-            </div>
+            </motion.div>
           )}
-        </section>
+        </motion.section>
 
-        <section className="max-w-7xl mx-auto py-16 px-4 animate-fade-in delay-700">
+        <motion.section 
+          className="max-w-7xl mx-auto py-16 px-4 overflow-hidden"
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
           <h1 className="text-3xl font-bold text-gray-800 text-center mb-8">
             Popular Questions:
           </h1>
@@ -899,7 +1016,7 @@ export default function Home() {
               </AccordionItem>
             ))}
           </Accordion>
-        </section>
+        </motion.section>
       </main>
       <FooterNav />
     </>

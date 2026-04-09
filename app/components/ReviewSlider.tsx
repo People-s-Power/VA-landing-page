@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { motion } from "framer-motion";
 
 interface Review {
   name: string;
@@ -59,39 +60,46 @@ const StarRating = ({ stars }: { stars: number }) => (
 );
 
 const ReviewSlider: React.FC = () => (
-  <Swiper
-    spaceBetween={30}
-    slidesPerView={1}
-    breakpoints={{
-      768: {
-        slidesPerView: 2,
-      },
-      1024: {
-        slidesPerView: 3,
-      },
-    }}
-    loop={true}
-    autoplay={{ delay: 4000 }}
-    pagination={{ clickable: true }}
-    modules={[Pagination]}
-    className="w-full"
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8 }}
   >
-    {reviews.map((r, idx) => (
-      <SwiperSlide key={idx}>
-        <div className="bg-white rounded-xl border border-gray-200 p-8 flex flex-col items-center max-w-xl mx-auto h-full">
-          <StarRating stars={r.stars} />
-          <p className="text-lg text-gray-700 mb-8 text-center">“{r.review}”</p>
-          <div className="flex items-center gap-4">
-            <img src={r.image} alt={r.name} className="w-16 h-16 rounded-full object-cover border-2 border-primary" />
-            <div>
-              <div className="font-bold text-gray-800">{r.name}</div>
-              <div className="text-sm text-gray-500">{r.role}</div>
+    <Swiper
+      spaceBetween={30}
+      slidesPerView={1}
+      breakpoints={{
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      }}
+      loop={true}
+      autoplay={{ delay: 4000 }}
+      pagination={{ clickable: true }}
+      modules={[Pagination]}
+      className="w-full"
+    >
+      {reviews.map((r, idx) => (
+        <SwiperSlide key={idx}>
+          <div className="bg-white rounded-xl border border-gray-200 p-8 flex flex-col items-center max-w-xl mx-auto h-full">
+            <StarRating stars={r.stars} />
+            <p className="text-lg text-gray-700 mb-8 text-center">“{r.review}”</p>
+            <div className="flex items-center gap-4">
+              <img src={r.image} alt={r.name} className="w-16 h-16 rounded-full object-cover border-2 border-primary" />
+              <div>
+                <div className="font-bold text-gray-800">{r.name}</div>
+                <div className="text-sm text-gray-500">{r.role}</div>
+              </div>
             </div>
           </div>
-        </div>
-      </SwiperSlide>
-    ))}
-  </Swiper>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  </motion.div>
 );
 
 export default ReviewSlider;

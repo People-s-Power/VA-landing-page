@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router";
+import { motion } from "framer-motion";
 
 const HeaderNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,8 +15,11 @@ const HeaderNav = () => {
   }, []);
 
   return (
-    <div
+    <motion.div
       className={`fixed top-0 left-0 right-0 w-full z-50 transition-colors duration-300 ${scrolled ? "bg-white" : "bg-transparent"}`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <header className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
@@ -33,7 +37,7 @@ const HeaderNav = () => {
           <button
             className="md:hidden p-2 rounded text-primary focus:outline-none"
             aria-label="Toggle navigation"
-            onClick={() => setMenuOpen((open) => !open)}
+            onClick={() => setMenuOpen((open: boolean) => !open)}
           >
             <svg width="28" height="28" fill="currentColor" viewBox="0 0 20 20">
               <path
@@ -123,7 +127,7 @@ const HeaderNav = () => {
           </div>
         )}
       </header>
-    </div>
+    </motion.div>
   );
 };
 
