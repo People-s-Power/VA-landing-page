@@ -684,7 +684,7 @@ export default function Home() {
           <div className="shadow-xl my-6 grid grid-cols-1 md:grid-cols-3 gap-5 bg-white rounded-2xl p-4 md:p-10 max-w-6xl md:mx-auto mx-4">
             <div className="p-4 lg:border-r border-r-gray-200">
               <h2 className="text-xl font-bold mb-4">Need help?</h2>
-              <Link to={"https://www.experthubllc.com/home#contact"}>
+              <Link to={"https://www.experthubllc.com/book/Hire-ExpertHub"} target="_blank">
                 <div className="border flex gap-3 border-primary p-5 rounded-xl mb-4">
                   <span className="my-auto text-primary">
                     <svg
@@ -719,7 +719,7 @@ export default function Home() {
                   </div>
                 </div>
               </Link>
-              <Link to={"https://www.experthubllc.com/home#contact"}>
+{/* <Link to={"https://www.experthubllc.com/home#contact"}>
                 <div className="border flex gap-3 border-primary p-5 rounded-xl mb-4">
                   <span className="my-auto text-primary">
                     <svg
@@ -747,7 +747,7 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-              </Link>
+              </Link> */}
             </div>
             <div className="p-4 lg:border-r border-r-gray-200">
               <h2 className="text-xl font-bold">GVA Full-Time</h2>
