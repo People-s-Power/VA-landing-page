@@ -36,6 +36,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.__EH_WIDGET_ORG__ = 'hire-experthub';`,
+          }}
+        />
+        <script src="https://experthubllc.com/widget.js" async></script>
       </body>
     </html>
   );
