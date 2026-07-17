@@ -655,11 +655,11 @@ export default function Home() {
                   },
                   {
                     title: "Quality Control & Supervision",
-                    body: `Your assistant isn't alone. They're supervised by both Wing's Team Captains and Supervisors. 
+                    body: `Your assistant isn't alone. They're supervised by both ExpertHub's Team Captains and Supervisors. 
 
                     Additionally, you can opt-in to use sophisticated artificial intelligence technology that flags potential issues ahead of time to our supervisory team, who work to proactively resolve issues.
 
-                    If quality is your goal, Wing remains the best choice in this industry. `,
+                    If quality is your goal, ExpertHub remains the best choice in this industry. `,
                   },
                   {
                     title: "Custom Roles",
