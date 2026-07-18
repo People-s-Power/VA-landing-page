@@ -35,8 +35,8 @@ const staggerContainer = {
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "ExpertHub Virtual Assistant" },
-    { name: "description", content: "Welcome to ExpertHub Virtual Assistant!" },
+    { title: "ExpertHub Trained Professionals" },
+    { name: "description", content: "Welcome to ExpertHub Trained Professionals!" },
   ];
 }
 
@@ -69,17 +69,17 @@ const tasks = [
 
 const faqs = [
   {
-    question: "Who is a Virtual Assistant (VA)?",
+    question: "Who is a Trained Professional?",
     answer:
-      "A Virtual Assistant is a professional who provides remote support with tasks like admin, social media, research, and customer service—saving you time and energy.",
+      "A trained professional is an expert who provides remote support with tasks like admin, social media, research, and customer service—saving you time and energy.",
   },
   {
     question: "How does Experthub work?",
     answer:
-      "We match you with a trained virtual assistant based on your business needs. You delegate tasks, and your VA handles them remotely.",
+      "We match you with a trained professional based on your business needs. You delegate tasks, and your professional handles them remotely.",
   },
   {
-    question: "What tasks can I delegate to a Virtual Assistant?",
+    question: "What tasks can I delegate to a trained professional?",
     answer:
       "You can delegate admin work, email management, calendar scheduling, data entry, social media management, customer service, research, and more.",
   },
@@ -192,7 +192,7 @@ const assistantServices = [
     Icon: Headset,
   },
   {
-    title: "Virtual Assistant for lawyers",
+    title: "Trained Professional for lawyers",
     value:
       "Provides expert assistance for legal research, document preparation, and case management",
     image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=800",
@@ -212,7 +212,7 @@ const assistantServices = [
     Icon: Share2,
   },
   {
-    title: "General Virtual Assistant",
+    title: "General Trained Professional",
     value: "Provides administrative support across various tasks and projects.",
     image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&q=80&w=800",
     Icon: UserCheck,
@@ -255,10 +255,10 @@ export default function Home() {
                 <br />
                 Faster with ExpertHub
                 <br />
-                <span className="text-primary">Virtual Assistants</span>
+                <span className="text-primary">Trained Professionals</span>
               </h2>
               <p className="text-gray-600 text-sm">
-                Reliable virtual assistant support for entrepreneurs, small
+                Reliable support from trained professionals for entrepreneurs, small
                 businesses, and busy professionals so you can focus on growth.
               </p>
               <div className="flex gap-3 mt-4">
@@ -326,7 +326,7 @@ export default function Home() {
                   <img
                     key={src}
                     src={src}
-                    alt={`Virtual Assistant ${idx + 1}`}
+                    alt={`Trained Professional ${idx + 1}`}
                     className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 ease-in-out ${
                       idx === currentImageIndex ? "opacity-100" : "opacity-0"
                     }`}
@@ -353,7 +353,7 @@ export default function Home() {
                 What we do
               </h2>
               <p className="text-gray-600 mb-3">
-                ExpertHub virtual assistance is your right-hand man for
+                ExpertHub's trained professionals are your right-hand resource for
                 everything that matters.
               </p>
 
@@ -563,8 +563,8 @@ export default function Home() {
               Why Work With ExpertHub?
             </h2>
             <p className="text-gray-600 mb-4">
-              Your Time Is Priceless — Let’s Help You Protect It. Experthub
-              virtual assistants are selected based on your unique requirements,
+              Your Time Is Priceless — Let’s Help You Protect It. ExpertHub's
+              trained professionals are selected based on your unique requirements,
               so no more drowning in admin tasks, endless emails, and
               overwhelming social media. We take care of the details so you can
               do what truly matters—grow and scale your business.
@@ -595,7 +595,7 @@ export default function Home() {
                   "Flexible & affordable plans that grow with your business",
                   "Customized solutions designed around your unique needs",
                   "A trained team working in a professional, distraction-free environment",
-                  "Ongoing training to ensure our virtual assistants stay top-notch",
+                  "Ongoing training to ensure our trained professionals stay top-notch",
                 ].map((feature, i) => (
                   <AccordionItem
                     key={i}
@@ -717,7 +717,7 @@ export default function Home() {
               to={"https://www.experthubllc.com/auth?mode=signup&createorg=true&VA=true"}
             >
               <button className="bg-transparent border border-black rounded-full px-8 text-black py-3 mt-4">
-                Book Your Virtual Assistant Today
+                Book Your Trained Professional Today
               </button>
             </Link>
           </motion.div>
@@ -759,10 +759,10 @@ export default function Home() {
             variants={fadeInUp}
           >
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              General Virtual Assistant Pricing
+              General Trained Professional Pricing
             </h2>
             <p>
-              A ExpertHub General Virtual Assistant (GVA) will take care of your
+              An ExpertHub General Trained Professional (GTP) will take care of your
               administrative and personal work and help you streamline your
               day-to-day operations so you can focus on growing your business
               and achieving your goals.
@@ -850,7 +850,7 @@ export default function Home() {
               <ul className="pl-0 space-y-3 mt-4">
                 {[
                   "160 Hours per month",
-                  "Dedicated Virtual Assistant",
+                  "Dedicated Trained Professional",
                   "Free replacement",
                   "Customer Success Manager",
                   "Rigorous quality control and supervision",
@@ -890,7 +890,7 @@ export default function Home() {
               <ul className="pl-0 space-y-3 mt-4">
                 {[
                   "80 Hours per month",
-                  "Dedicated Virtual Assistant",
+                  "Dedicated Trained Professional",
                   "Free replacement",
                   "Customer Success Manager",
                   "Rigorous quality control and supervision",
@@ -931,7 +931,7 @@ export default function Home() {
             variants={fadeInUp}
           >
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              More Virtual Assistant Services
+              More Trained Professional Services
             </h2>
             <p className="mb-4 max-w-2xl mx-auto text-gray-600">
               We offer 25+ distinct plans across sales, marketing, and operations. Speak to an expert to find the perfect fit.

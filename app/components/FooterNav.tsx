@@ -56,7 +56,7 @@ const FooterNav = () => {
                   href="https://www.experthubllc.com/home#virtual-assistants"
                   className="hover:underline"
                 >
-                  Virtual Assistants
+                  Trained Professionals
                 </a>
               </li>
               <li>

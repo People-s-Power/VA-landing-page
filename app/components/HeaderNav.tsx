@@ -64,7 +64,7 @@ const HeaderNav = () => {
               to="https://project.experthubllc.com/professional/auth/signup"
               className="text-base py-2"
             >
-              Become a Virtual Assistant
+              Become a Trained Professional
             </Link> */}
           </nav>
           <div className="hidden md:flex items-center">

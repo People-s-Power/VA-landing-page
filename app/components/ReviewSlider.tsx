@@ -32,7 +32,7 @@ const reviews: Review[] = [
     name: "Emily Chen",
     image: "https://randomuser.me/api/portraits/women/65.jpg",
     role: "COO, TechFlow",
-    review: "The best virtual assistant service I've used. Great support team!",
+    review: "The best trained professional service I've used. Great support team!",
     stars: 4,
   },
   {
