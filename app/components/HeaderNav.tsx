@@ -69,8 +69,8 @@ const HeaderNav = () => {
           </nav>
           <div className="hidden md:flex items-center">
             <Link to="https://project.experthubllc.com/professional/auth/signup">
-              <button className="ml-2 px-4 py-2 bg-primary text-white hover:brightness-90 transition">
-                Become a VA
+              <button className="ml-2 px-4 py-2 bg-primary text-white rounded-full hover:brightness-90 transition">
+                Become a Professional
               </button>
             </Link>
             <Link to="https://www.experthubllc.com/auth?VA=true">
