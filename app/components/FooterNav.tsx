@@ -11,7 +11,7 @@ const FooterNav = () => {
                 src="https://www.experthubllc.com/_next/image?url=%2Fimages%2Fnew-home%2Flogo.png&w=48&q=75"
                 alt=""
               />
-              <span className="text-2xl font-bold">ExpertHub LLC</span>
+              <span className="text-2xl font-bold">ExpertHub Inc.</span>
             </div>
             <p className="text-sm mb-6">
               Connecting professionals through Expert services, workspace,
@@ -163,7 +163,7 @@ const FooterNav = () => {
         </div>
         <div className="p-3">
           <p className="text-center text-sm text-gray-300">
-            &copy; {new Date().getFullYear()} ExpertHub LLC. All rights
+            &copy; {new Date().getFullYear()} ExpertHub Inc. All rights
             reserved.
           </p>
         </div>

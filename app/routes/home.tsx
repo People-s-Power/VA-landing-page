@@ -702,8 +702,8 @@ export default function Home() {
               Effortless Remote Work Management With ExpertHub
             </h2>
             <p className="my-8">
-              Stop spending another day overwhelmed. Let ExpertHub Virtual
-              Assistants lift the load so you can focus on what matters the
+              Stop spending another day overwhelmed. Let ExpertHub Trained
+              Professionals lift the load so you can focus on what matters the
               most.{" "}
             </p>
             {/* <ul className="list-disc pl-5">
@@ -837,7 +837,7 @@ export default function Home() {
               </Link> */}
             </motion.div>
             <motion.div className="p-4 lg:border-r border-r-gray-200" variants={fadeInUp}>
-              <h2 className="text-xl font-bold">GVA Full-Time</h2>
+              <h2 className="text-xl font-bold">GTP Full-Time</h2>
               <p className="text-primary font-bold text-3xl my-4">$850/Month</p>
               <Link
                 to={"https://www.experthubllc.com/auth?mode=signup&createorg=true&VA=true"}
@@ -877,7 +877,7 @@ export default function Home() {
               </ul>
             </motion.div>
             <motion.div className="p-4" variants={fadeInUp}>
-              <h2 className="text-xl font-bold">GVA Part-Time</h2>
+              <h2 className="text-xl font-bold">GTP Part-Time</h2>
               <p className="text-primary font-bold text-3xl my-4">$450/Month</p>
               <Link
                 to={"https://www.experthubllc.com/auth?mode=signup&createorg=true&VA=true"}
