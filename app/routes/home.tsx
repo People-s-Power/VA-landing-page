@@ -8,13 +8,16 @@ import {
   AccordionTrigger,
 } from "~/components/ui/Accordion";
 import ReviewSlider from "~/components/ReviewSlider";
+import CalendlyEmbed from "~/components/CalendlyEmbed";
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
-import { 
-  Home as HomeIcon, Stethoscope, Calendar, Briefcase, TrendingUp, PhoneCall, 
-  BookOpen, Headset, Scale, Globe, Share2, UserCheck 
-} from "lucide-react";
+import { Calendar, Headset, PhoneCall, TrendingUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { assistantServices } from "~/data/services";
+import {
+  CALENDLY_STRATEGY_SESSION,
+  SIGNUP_URL,
+} from "~/lib/links";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -135,95 +138,20 @@ const faqs = [
   {
     question: "How do I get started?",
     answer:
-      "Simply choose your package, and we’ll match you with your VA within 48–72 hours after booking.",
+      "Simply choose your package, and we’ll match you with your VA within a week after booking.",
   },
 ];
 
-const assistantServices = [
-  {
-    title: "Real Estate Assistant",
-    value: "All-round help for your property listings",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800",
-    Icon: HomeIcon,
-  },
-  {
-    title: "Healthcare Assistant",
-    value:
-      "Helps co-ordinate appointments with patients, data-entry and insurance filing",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800",
-    Icon: Stethoscope,
-  },
-  {
-    title: "Personal Assistant",
-    value: "Manages your calendar both at work and outside of it",
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
-    Icon: Calendar,
-  },
-  {
-    title: "Executive Assistant",
-    value:
-      "Discover expert-tier talent to help with presentations, proposals and more",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
-    Icon: Briefcase,
-  },
-  {
-    title: "Digi. Marketing Assistant",
-    value: "Discover experts in ppc ads, email marketing and growth",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
-    Icon: TrendingUp,
-  },
-  {
-    title: "Sales Development Rep",
-    value: "Engages with prospects, grows your sales pipeline and drives sales",
-    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=800",
-    Icon: PhoneCall,
-  },
-  {
-    title: "Bookkeeping Assistant",
-    value: "Tracks expenses, maintain your books and reconcile statements",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800",
-    Icon: BookOpen,
-  },
-  {
-    title: "Customer Service Rep",
-    value:
-      "Delivers responsive and professional customer support for general queries, complaints and feedbacks",
-    image: "https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&q=80&w=800",
-    Icon: Headset,
-  },
-  {
-    title: "Trained Professional for lawyers",
-    value:
-      "Provides expert assistance for legal research, document preparation, and case management",
-    image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=800",
-    Icon: Scale,
-  },
-  {
-    title: "Website Management",
-    value: "Handles website updates, content management, and SEO optimization",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800",
-    Icon: Globe,
-  },
-  {
-    title: "Social Media Management",
-    value:
-      "Creates and schedules posts, engages with followers, and analyzes performance metrics.",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800",
-    Icon: Share2,
-  },
-  {
-    title: "General Trained Professional",
-    value: "Provides administrative support across various tasks and projects.",
-    image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&q=80&w=800",
-    Icon: UserCheck,
-  },
-];
-
+// WebP, not PNG: each started life as a 1024x1024 RGBA PNG (795KB-1.2MB, 3.7MB
+// for the set). They're displayed at 450 CSS px at most, so 960px covers 2x
+// displays. Re-encoded to WebP q82 the four together are ~384KB (-90%) and
+// pixel-identical at this size. All four load eagerly because the carousel
+// crossfades into them on a 4s timer — deferring them would show a blank frame.
 const heroImages = [
-  "/images/hero_1.png",
-  "/images/healthcare-va.png",
-  "/images/tech_support_va.png",
-  "/images/marketing_va.png",
+  "/images/hero_1.webp",
+  "/images/healthcare-va.webp",
+  "/images/tech_support_va.webp",
+  "/images/marketing_va.webp",
 ];
 
 export default function Home() {
@@ -235,6 +163,21 @@ export default function Home() {
       setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
     }, 4000); // Transition every 4 seconds
     return () => clearInterval(interval);
+  }, []);
+
+  // Header/footer links such as "/#learn-more" and "/#pricing" are deep links
+  // into this page. When they're clicked from another route the browser doesn't
+  // scroll to the anchor, so do it manually once this page has mounted.
+  useEffect(() => {
+    const { hash } = window.location;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (target) {
+      // Wait a frame so layout is settled before measuring.
+      requestAnimationFrame(() =>
+        target.scrollIntoView({ behavior: "smooth", block: "start" })
+      );
+    }
   }, []);
 
   return (
@@ -262,13 +205,9 @@ export default function Home() {
                 businesses, and busy professionals so you can focus on growth.
               </p>
               <div className="flex gap-3 mt-4">
-                <Link
-                  to={
-                    "https://www.experthubllc.com/auth?mode=signup&createorg=true&VA=true"
-                  }
-                >
+                <Link to={CALENDLY_STRATEGY_SESSION} target="_blank">
                   <button className="md:px-8 px-4 py-2 bg-primary text-white rounded-full">
-                    Hire Now
+                    Book Strategy Session
                   </button>
                 </Link>
                 <Link to={"#learn-more"}>
@@ -327,6 +266,12 @@ export default function Home() {
                     key={src}
                     src={src}
                     alt={`Trained Professional ${idx + 1}`}
+                    width={960}
+                    height={960}
+                    decoding="async"
+                    /* The first frame is the LCP element — let it win the
+                       bandwidth race against the three behind it. */
+                    fetchPriority={idx === 0 ? "high" : "auto"}
                     className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 ease-in-out ${
                       idx === currentImageIndex ? "opacity-100" : "opacity-0"
                     }`}
@@ -535,13 +480,11 @@ export default function Home() {
               variants={fadeInUp}
             >
               <Link
-                to={
-                  "https://www.experthubllc.com/book/Hire-ExpertHub"
-                }
+                to={CALENDLY_STRATEGY_SESSION}
                 target="_blank"
               >
                 <button className="md:px-10 px-6 py-3 bg-primary text-white rounded-full text-lg font-semibold hover:bg-primary/90 hover:shadow-lg transition-all duration-300">
-                  Book Consultation
+                  Book Strategy Session
                 </button>
               </Link>
             </motion.div>
@@ -714,7 +657,8 @@ export default function Home() {
               <li>Upskilling and training</li>
             </ul> */}
             <Link
-              to={"https://www.experthubllc.com/auth?mode=signup&createorg=true&VA=true"}
+              to={CALENDLY_STRATEGY_SESSION}
+              target="_blank"
             >
               <button className="bg-transparent border border-black rounded-full px-8 text-black py-3 mt-4">
                 Book Your Trained Professional Today
@@ -768,10 +712,17 @@ export default function Home() {
               and achieving your goals.
             </p>
           </motion.div>
-          <div className="shadow-xl my-6 grid grid-cols-1 md:grid-cols-3 gap-5 bg-white rounded-2xl p-4 md:p-10 max-w-6xl md:mx-auto mx-4">
-            <motion.div className="p-4 lg:border-r border-r-gray-200" variants={fadeInUp}>
+          {/*
+            Three tracks rather than a plain 3-col grid: "Need help?" stays narrow,
+            the plan keeps its width, and the calendar takes whatever is left. The
+            calendar has a hard 320px min-width (Calendly's own requirement), so
+            the three-up row only switches on at the `wide` breakpoint (1200px) —
+            below that the calendar spans the full row rather than being squeezed.
+          */}
+          <div className="shadow-xl my-6 grid grid-cols-1 md:grid-cols-2 wide:grid-cols-[minmax(0,17rem)_minmax(0,22rem)_minmax(20rem,1fr)] gap-5 bg-white rounded-2xl p-4 md:p-10 max-w-[86rem] md:mx-auto mx-4">
+            <motion.div className="p-4 wide:border-r border-r-gray-200" variants={fadeInUp}>
               <h2 className="text-xl font-bold mb-4">Need help?</h2>
-              <Link to={"https://www.experthubllc.com/book/Hire-ExpertHub"} target="_blank">
+              <Link to={CALENDLY_STRATEGY_SESSION} target="_blank">
                 <div className="border flex gap-3 border-primary p-5 rounded-xl mb-4">
                   <span className="my-auto text-primary">
                     <svg
@@ -802,7 +753,9 @@ export default function Home() {
 
                   <div>
                     <p className="font-medium">Book a meeting</p>
-                    <p className="text-sm">Book anytime, today, or this week</p>
+                    <p className="text-sm">
+                      Limited slots available — reserve yours today
+                    </p>
                   </div>
                 </div>
               </Link>
@@ -836,12 +789,26 @@ export default function Home() {
                 </div>
               </Link> */}
             </motion.div>
-            <motion.div className="p-4 lg:border-r border-r-gray-200" variants={fadeInUp}>
+            <motion.div className="p-4" variants={fadeInUp}>
               <h2 className="text-xl font-bold">GTP Full-Time</h2>
-              <p className="text-primary font-bold text-3xl my-4">$850/Month</p>
-              <Link
-                to={"https://www.experthubllc.com/auth?mode=signup&createorg=true&VA=true"}
-              >
+              <div className="inline-flex items-center rounded-full bg-primary/20 px-3 py-1 my-3">
+                <span className="text-xs font-bold uppercase tracking-wide text-gray-800">
+                  New Partner Pricing
+                </span>
+              </div>
+              <p className="my-2 flex flex-col items-start">
+                <span className="text-gray-400 font-semibold text-2xl line-through">
+                  $850/Month
+                </span>
+                <span className="text-primary font-bold text-3xl">
+                  $499/Month
+                </span>
+              </p>
+              <p className="text-sm text-gray-600 mb-4">
+                Save $351 every month on a dedicated full-time Trained
+                Professional.
+              </p>
+              <Link to={SIGNUP_URL}>
                 <button className="bg-primary text-white w-full rounded-full px-4 py-2">
                   Sign Up
                 </button>
@@ -876,45 +843,25 @@ export default function Home() {
                 ))}
               </ul>
             </motion.div>
-            <motion.div className="p-4" variants={fadeInUp}>
-              <h2 className="text-xl font-bold">GTP Part-Time</h2>
-              <p className="text-primary font-bold text-3xl my-4">$450/Month</p>
-              <Link
-                to={"https://www.experthubllc.com/auth?mode=signup&createorg=true&VA=true"}
-              >
-                <button className="bg-primary text-white w-full rounded-full px-4 py-2">
-                  Sign Up
-                </button>
-              </Link>
 
-              <ul className="pl-0 space-y-3 mt-4">
-                {[
-                  "80 Hours per month",
-                  "Dedicated Trained Professional",
-                  "Free replacement",
-                  "Customer Success Manager",
-                  "Rigorous quality control and supervision",
-                  "ExpertHub Workspace App",
-                  "Your timezone",
-                  "Choose from designated slots",
-                  "Sharing is limited",
-                  "10 GB file sharing/storage limit",
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-2">
-                    <span className="text-primary">
-                      <svg
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M7.629 15.314a1 1 0 0 1-1.414 0l-4.243-4.243a1 1 0 1 1 1.414-1.414l3.536 3.536 7.778-7.778a1 1 0 0 1 1.414 1.414l-8.485 8.485z" />
-                      </svg>
-                    </span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+            {/* Third column — the live calendar (replaces the retired Part-Time tier). */}
+            <motion.div
+              className="p-4 flex flex-col md:col-span-2 wide:col-span-1"
+              variants={fadeInUp}
+            >
+              <h3 className="text-xl font-bold text-gray-800 mb-2">
+                Pick a time that works for you
+              </h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Book a free strategy session and we&apos;ll scope the right
+                Trained Professional for your business.
+              </p>
+              <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
+                {/* Taller than Calendly's 700px default: in a single column the
+                    widget stacks its header above the date picker, which needs
+                    more vertical room before the time slots start scrolling. */}
+                <CalendlyEmbed height={780} />
+              </div>
             </motion.div>
           </div>
         </motion.section>
@@ -963,7 +910,7 @@ export default function Home() {
                     {service.value}
                   </p>
                   <div className="mt-auto">
-                    <Link to={"https://www.experthubllc.com/home#contact"} className="inline-flex items-center gap-1 font-semibold text-sm text-primary group-hover:text-primary/80 transition-colors group/btn">
+                    <Link to={CALENDLY_STRATEGY_SESSION} target="_blank" className="inline-flex items-center gap-1 font-semibold text-sm text-primary group-hover:text-primary/80 transition-colors group/btn">
                       Book a Call
                       <span className="transform group-hover/btn:translate-x-1 transition-transform duration-300">→</span>
                     </Link>

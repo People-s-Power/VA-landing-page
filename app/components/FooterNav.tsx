@@ -1,4 +1,14 @@
 import React from "react";
+import { Link } from "react-router";
+import {
+  COMPANY_NAME,
+  DALLAS_ADDRESS,
+  EBOOK_URL,
+  TAGLINE,
+} from "~/lib/links";
+import { sortedPosts } from "~/lib/blog";
+
+const FOOTER_LINK_CLASS = "hover:underline";
 
 const FooterNav = () => {
   return (
@@ -11,159 +21,111 @@ const FooterNav = () => {
                 src="https://www.experthubllc.com/_next/image?url=%2Fimages%2Fnew-home%2Flogo.png&w=48&q=75"
                 alt=""
               />
-              <span className="text-2xl font-bold">ExpertHub Inc.</span>
+              <span className="text-2xl font-bold">{COMPANY_NAME}</span>
             </div>
-            <p className="text-sm mb-6">
-              Connecting professionals through Expert services, workspace,
-              trainings and events
-            </p>
+            <p className="text-sm mb-6">{TAGLINE}</p>
             <div className="space-y-6 text-gray-400">
               <div>
-                <h4 className="text-white font-semibold mb-1">Dallas Office</h4>
-                <a 
-                  href="https://www.google.com/maps/search/?api=1&query=910+S.+Pearl+Expy,+Dallas,+TX+75201,+USA" 
-                  target="_blank" 
+                <h4 className="text-white font-semibold mb-1">
+                  {DALLAS_ADDRESS.label}
+                </h4>
+                <a
+                  href={DALLAS_ADDRESS.mapsUrl}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors block"
                 >
-                  910 S. Pearl Expy, Dallas, <br /> TX 75201, USA
+                  {DALLAS_ADDRESS.street}, {DALLAS_ADDRESS.city},{" "}
+                  <br /> {DALLAS_ADDRESS.state} {DALLAS_ADDRESS.zip},{" "}
+                  {DALLAS_ADDRESS.country}
                 </a>
                 <p className="mt-1">
-                  Phone: <a href="tel:2144323113" className="hover:text-white transition-colors">214-432-3113</a>
-                </p>
-              </div>
-              <div>
-                <h4 className="text-white font-semibold mb-1">Houston Office</h4>
-                <a 
-                  href="https://www.google.com/maps/search/?api=1&query=4008+Chartres+St,+Houston,+TX+77004,+USA" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors block"
-                >
-                  4008 Chartres St, Houston, TX 77004, USA
-                </a>
-                <p className="mt-1">
-                  Phone: <a href="tel:7132446695" className="hover:text-white transition-colors">713-244-6695</a>
+                  Phone:{" "}
+                  <a
+                    href={DALLAS_ADDRESS.phoneHref}
+                    className="hover:text-white transition-colors"
+                  >
+                    {DALLAS_ADDRESS.phone}
+                  </a>
                 </p>
               </div>
             </div>
           </div>
-          <div>
-            <h3 className="font-semibold mb-2">Services</h3>
-            <ul className="space-y-2 text-gray-300">
-              <li>
-                <a
-                  href="https://www.experthubllc.com/home#virtual-assistants"
-                  className="hover:underline"
-                >
-                  Trained Professionals
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.experthubllc.com/home#expert"
-                  className="hover:underline"
-                >
-                  Expert Services
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.experthubllc.com/home#training"
-                  className="hover:underline"
-                >
-                  Professional Training
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.experthubllc.com/home#workspace"
-                  className="hover:underline"
-                >
-                  Workspace Solutions
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.experthubllc.com/home#events"
-                  className="hover:underline"
-                >
-                  Community Events
-                </a>
-              </li>
-            </ul>
-          </div>
+
           <div>
             <h3 className="font-semibold mb-2">Company</h3>
             <ul className="space-y-2 text-gray-300">
               <li>
-                <a
-                  href="https://www.experthubllc.com/about"
-                  className="hover:underline"
-                >
+                <Link to="/about" className={FOOTER_LINK_CLASS}>
                   About Us
-                </a>
+                </Link>
               </li>
+              {/* Points at the same in-page section as "Services" in the header. */}
               <li>
-                <a
-                  href="https://www.experthubllc.com/home#services"
-                  className="hover:underline"
-                >
+                <Link to="/#learn-more" className={FOOTER_LINK_CLASS}>
                   Services
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="https://www.experthubllc.com/home#events"
-                  className="hover:underline"
-                >
-                  Events
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.experthubllc.com/home#contact"
-                  className="hover:underline"
-                >
+                <Link to="/contact" className={FOOTER_LINK_CLASS}>
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
+
+          <div>
+            <h3 className="font-semibold mb-2">Resources</h3>
+            <ul className="space-y-2 text-gray-300">
+              <li>
+                <a
+                  href={EBOOK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={FOOTER_LINK_CLASS}
+                >
+                  Download Our eBook
+                </a>
+              </li>
+              <li>
+                <Link to="/blog" className={FOOTER_LINK_CLASS}>
+                  Blog
+                </Link>
+              </li>
+              {sortedPosts.map((post) => (
+                <li key={post.slug}>
+                  <Link to={`/blog/${post.slug}`} className={FOOTER_LINK_CLASS}>
+                    {post.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <div>
             <h3 className="font-semibold mb-2">Legal</h3>
             <ul className="space-y-2 text-gray-300">
               <li>
-                <a
-                  href="https://www.experthubllc.com/home#"
-                  className="hover:underline"
-                >
+                <Link to="/privacy" className={FOOTER_LINK_CLASS}>
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="https://www.experthubllc.com/home#"
-                  className="hover:underline"
-                >
-                  Terms of Service
-                </a>
+                <Link to="/terms" className={FOOTER_LINK_CLASS}>
+                  Terms of Use
+                </Link>
               </li>
-
               <li>
-                <a
-                  href="https://www.experthubllc.com/home#"
-                  className="hover:underline"
-                >
+                <Link to="/privacy#cookies" className={FOOTER_LINK_CLASS}>
                   Cookie Policy
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
         </div>
         <div className="p-3">
           <p className="text-center text-sm text-gray-300">
-            &copy; {new Date().getFullYear()} ExpertHub Inc. All rights
+            &copy; {new Date().getFullYear()} {COMPANY_NAME} All rights
             reserved.
           </p>
         </div>

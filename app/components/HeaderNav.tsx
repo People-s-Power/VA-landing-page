@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
+import { BECOME_PRO_URL, LOGIN_URL } from "~/lib/links";
 
 const HeaderNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -50,7 +51,7 @@ const HeaderNav = () => {
           </button>
           <nav className="hidden md:flex items-center space-x-7">
             {/* <h1 className="text-xl font-bold text-gray-800">ExpertHub</h1> */}
-            <Link to="/#learn-more" className="text-base py-2">
+            <Link to="/about" className="text-base py-2">
               About
             </Link>
             <Link to="/#learn-more" className="text-base py-2">
@@ -68,12 +69,12 @@ const HeaderNav = () => {
             </Link> */}
           </nav>
           <div className="hidden md:flex items-center">
-            <Link to="https://project.experthubllc.com/professional/auth/signup">
+            <Link to={BECOME_PRO_URL}>
               <button className="ml-2 px-4 py-2 bg-primary text-white rounded-full hover:brightness-90 transition">
                 Become a Professional
               </button>
             </Link>
-            <Link to="https://www.experthubllc.com/auth?VA=true">
+            <Link to={LOGIN_URL}>
               <button className="ml-2 px-4 py-2 text-primary rounded hover:brightness-90 transition">
                 Login
               </button>
@@ -87,7 +88,7 @@ const HeaderNav = () => {
               Home
             </Link>
             <Link
-              to="/#learn-more"
+              to="/about"
               className="text-base py-2 border-b border-gray-100"
             >
               About
@@ -105,21 +106,21 @@ const HeaderNav = () => {
               Pricing
             </Link>
             {/* <Link
-              to="https://project.experthubllc.com/professional/auth/signup"
+              to={BECOME_PRO_URL}
               className="text-base py-2 border-b border-gray-100"
             >
               Become a VA
             </Link> */}
 
             <Link
-              to="https://project.experthubllc.com/professional/auth/signup"
+              to={BECOME_PRO_URL}
               className="text-base py-2 border-b border-gray-100"
             >
               <button className="mt-2 px-4 py-2 bg-white text-primary hover:brightness-90 transition border border-primary">
-                Become a VA
+                Become a Professional
               </button>
             </Link>
-            <Link to={"https://www.experthubllc.com/auth?VA=true"}>
+            <Link to={LOGIN_URL}>
               <button className="mt-2 px-4 py-2 text-primary rounded hover:brightness-90 transition border border-primary">
                 Login
               </button>
