@@ -5,7 +5,6 @@ import {
   Briefcase,
   TrendingUp,
   PhoneCall,
-  BookOpen,
   Headset,
   Scale,
   Globe,
@@ -33,6 +32,65 @@ export interface AssistantService {
 
 export const assistantServices: AssistantService[] = [
   {
+    title: "General Trained Professional",
+    value: "Provides administrative support across various tasks and projects.",
+    image:
+      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&q=80&w=800",
+    Icon: UserCheck,
+  },
+  {
+    title: "Social Media Management",
+    value:
+      "Creates and schedules posts, engages with followers, and analyzes performance metrics.",
+    image:
+      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800",
+    Icon: Share2,
+  },
+  {
+    title: "Executive Assistant",
+    value:
+      "Discover expert-tier talent to help with presentations, proposals and more",
+    image:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
+    Icon: Briefcase,
+  },
+  {
+    title: "Personal Assistant",
+    value: "Manages your calendar both at work and outside of it",
+    image:
+      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
+    Icon: Calendar,
+  },
+  {
+    title: "Sales Development Rep",
+    value: "Engages with prospects, grows your sales pipeline and drives sales",
+    image:
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=800",
+    Icon: PhoneCall,
+  },
+  {
+    title: "Customer Service Rep",
+    value:
+      "Delivers responsive and professional customer support for general queries, complaints and feedbacks",
+    image:
+      "https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&q=80&w=800",
+    Icon: Headset,
+  },
+  {
+    title: "Digital Marketing Assistant",
+    value: "Discover experts in ppc ads, email marketing and growth",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
+    Icon: TrendingUp,
+  },
+  {
+    title: "Website Management",
+    value: "Handles website updates, content management, and SEO optimization",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800",
+    Icon: Globe,
+  },
+  {
     title: "Real Estate Assistant",
     value: "All-round help for your property listings",
     image:
@@ -48,78 +106,12 @@ export const assistantServices: AssistantService[] = [
     Icon: Stethoscope,
   },
   {
-    title: "Personal Assistant",
-    value: "Manages your calendar both at work and outside of it",
-    image:
-      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
-    Icon: Calendar,
-  },
-  {
-    title: "Executive Assistant",
-    value:
-      "Discover expert-tier talent to help with presentations, proposals and more",
-    image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
-    Icon: Briefcase,
-  },
-  {
-    title: "Digi. Marketing Assistant",
-    value: "Discover experts in ppc ads, email marketing and growth",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
-    Icon: TrendingUp,
-  },
-  {
-    title: "Sales Development Rep",
-    value: "Engages with prospects, grows your sales pipeline and drives sales",
-    image:
-      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=800",
-    Icon: PhoneCall,
-  },
-  {
-    title: "Bookkeeping Assistant",
-    value: "Tracks expenses, maintain your books and reconcile statements",
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800",
-    Icon: BookOpen,
-  },
-  {
-    title: "Customer Service Rep",
-    value:
-      "Delivers responsive and professional customer support for general queries, complaints and feedbacks",
-    image:
-      "https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&q=80&w=800",
-    Icon: Headset,
-  },
-  {
-    title: "Trained Professional for lawyers",
+    title: "Trained Professional for Lawyers",
     value:
       "Provides expert assistance for legal research, document preparation, and case management",
     image:
       "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=800",
     Icon: Scale,
-  },
-  {
-    title: "Website Management",
-    value: "Handles website updates, content management, and SEO optimization",
-    image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800",
-    Icon: Globe,
-  },
-  {
-    title: "Social Media Management",
-    value:
-      "Creates and schedules posts, engages with followers, and analyzes performance metrics.",
-    image:
-      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800",
-    Icon: Share2,
-  },
-  {
-    title: "General Trained Professional",
-    value: "Provides administrative support across various tasks and projects.",
-    image:
-      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&q=80&w=800",
-    Icon: UserCheck,
   },
 ];
 
@@ -127,3 +119,4 @@ export const assistantServices: AssistantService[] = [
 export const serviceOptions: string[] = assistantServices.map(
   (service) => service.title
 );
+
