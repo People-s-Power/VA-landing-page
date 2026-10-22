@@ -3,7 +3,6 @@ import { Link } from "react-router";
 import {
   COMPANY_NAME,
   CONTACT_URL,
-  DALLAS_ADDRESS,
   EBOOK_URL,
   TAGLINE,
 } from "~/lib/links";
@@ -25,32 +24,6 @@ const FooterNav = () => {
               <span className="text-2xl font-bold">{COMPANY_NAME}</span>
             </div>
             <p className="text-sm mb-6">{TAGLINE}</p>
-            <div className="space-y-6 text-gray-400">
-              <div>
-                <h4 className="text-white font-semibold mb-1">
-                  {DALLAS_ADDRESS.label}
-                </h4>
-                <a
-                  href={DALLAS_ADDRESS.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors block"
-                >
-                  {DALLAS_ADDRESS.street}, {DALLAS_ADDRESS.city},{" "}
-                  <br /> {DALLAS_ADDRESS.state} {DALLAS_ADDRESS.zip},{" "}
-                  {DALLAS_ADDRESS.country}
-                </a>
-                <p className="mt-1">
-                  Phone:{" "}
-                  <a
-                    href={DALLAS_ADDRESS.phoneHref}
-                    className="hover:text-white transition-colors"
-                  >
-                    {DALLAS_ADDRESS.phone}
-                  </a>
-                </p>
-              </div>
-            </div>
           </div>
 
           <div>
