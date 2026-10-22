@@ -24,6 +24,15 @@ export const LOGIN_URL = "https://www.experthubllc.com/auth?VA=true";
 export const BECOME_PRO_URL =
   "https://project.experthubllc.com/professional/auth/signup";
 
+/**
+ * Contact page / form URL hosted externally on the CRM.
+ * Provided by VITE_CRM_ENDPOINT. Falls back to "/contact" if not configured.
+ */
+export const CRM_ENDPOINT =
+  (import.meta.env.VITE_CRM_ENDPOINT as string | undefined)?.trim() || "";
+
+export const CONTACT_URL = CRM_ENDPOINT || "/contact";
+
 export const COMPANY_NAME = "ExpertHub Inc.";
 export const SITE_NAME = "HireExpertHub.com";
 export const SITE_URL = "https://www.hireexperthub.com";

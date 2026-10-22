@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import {
   COMPANY_NAME,
+  CONTACT_URL,
   DALLAS_ADDRESS,
   EBOOK_URL,
   TAGLINE,
@@ -67,9 +68,20 @@ const FooterNav = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className={FOOTER_LINK_CLASS}>
-                  Contact
-                </Link>
+                {CONTACT_URL.startsWith("http") ? (
+                  <a
+                    href={CONTACT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={FOOTER_LINK_CLASS}
+                  >
+                    Contact
+                  </a>
+                ) : (
+                  <Link to={CONTACT_URL} className={FOOTER_LINK_CLASS}>
+                    Contact
+                  </Link>
+                )}
               </li>
             </ul>
           </div>

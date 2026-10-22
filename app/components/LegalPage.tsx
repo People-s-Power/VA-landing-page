@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router";
 import PageLayout from "~/components/PageLayout";
-import { COMPANY_NAME, DALLAS_ADDRESS, LEGAL_LAST_UPDATED } from "~/lib/links";
+import {
+  COMPANY_NAME,
+  CONTACT_URL,
+  DALLAS_ADDRESS,
+  LEGAL_LAST_UPDATED,
+} from "~/lib/links";
 
 /**
  * Shared presentation for the legal pages (Terms of Use, Privacy Policy).
@@ -40,9 +45,20 @@ export const LegalLayout: React.FC<{
             {DALLAS_ADDRESS.phone}
           </a>{" "}
           or through our{" "}
-          <Link to="/contact" className="text-primary underline">
-            contact form
-          </Link>
+          {CONTACT_URL.startsWith("http") ? (
+            <a
+              href={CONTACT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline"
+            >
+              contact form
+            </a>
+          ) : (
+            <Link to={CONTACT_URL} className="text-primary underline">
+              contact form
+            </Link>
+          )}
           , or write to us at {DALLAS_ADDRESS.street},{" "}
           {DALLAS_ADDRESS.city}, {DALLAS_ADDRESS.state}{" "}
           {DALLAS_ADDRESS.zip}, {DALLAS_ADDRESS.country}.

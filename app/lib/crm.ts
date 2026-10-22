@@ -47,13 +47,11 @@ export const SMS_CONSENT_DISCLOSURE =
  */
 export const SMS_CONSENT_TEXT = `${SMS_CONSENT_LABEL} ${SMS_CONSENT_DISCLOSURE}`;
 
-export const CRM_ENDPOINT = import.meta.env.VITE_CRM_ENDPOINT as
-  | string
-  | undefined;
+export const CRM_ENDPOINT =
+  (import.meta.env.VITE_CRM_ENDPOINT as string | undefined)?.trim() || "";
 
-/** False until VITE_CRM_ENDPOINT is set — the form degrades to a clear notice. */
-export const isCrmConfigured = (): boolean =>
-  typeof CRM_ENDPOINT === "string" && CRM_ENDPOINT.trim().length > 0;
+/** False until VITE_CRM_ENDPOINT is set. */
+export const isCrmConfigured = (): boolean => CRM_ENDPOINT.length > 0;
 
 /**
  * Coerces common US phone formats to E.164 (+1XXXXXXXXXX).
